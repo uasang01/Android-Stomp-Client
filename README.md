@@ -1,48 +1,49 @@
-# Stomp client for kotlin
-
-[![](https://jitpack.io/v/bishoybasily/stomp.svg)](https://jitpack.io/#bishoybasily/stomp)
-
-## Example 
-
-``` kotlin
 
 lateinit var stompConnection: Disposable
 lateinit var topic: Disposable
+lateinit var sender: Disposable
+
+private var compositeDisposable = CompositeDisposable()
 
 val url = "ws://example.com/endpoint"
-val intervalMillis = 1000L
 val client = OkHttpClient()
 
-val stomp = StompClient(url, intervalMillis, client)
+val stomp = StompClient(client)
+stomp.url = "$url/websocket"
+
+val headers = HashMap<String, String>()
+headers["key"] = "value"
+
 
 // connect
-stompConnection = stomp.connect().subscribe {
-    when (it.type) {
-        Event.Type.OPENED -> {
+stompConnection = stomp.connect(headers)
+    .subscribe {
+        when (it.type) {
+            Event.Type.OPENED -> {
 
-        }
-        Event.Type.CLOSED -> {
+            }
+            Event.Type.CLOSED -> {
 
-        }
-        Event.Type.ERROR -> {
-
+            }
+            Event.Type.ERROR -> {
+            }
         }
     }
-}
+compositeDisposable.add(stompConnection)
 
 // subscribe
 topic = stomp.subscribe("/destination").subscribe { Log.i(TAG, it) }
 
-// unsubscribe
-topic.dispose()
+compositeDisposable.add(topic)
 
 // send
-stomp.send("/destination", "dummy message").subscribe {
+sender = stomp.send("/destination", "dummy message").subscribe {
     if (it) {
     }
 }
+compositeDisposable.add(sender)
 
+// unsubscribe
 // disconnect
-stompConnection.dispose()
+compositeDisposable.dispose()
      
-```
