@@ -1,3 +1,9 @@
+# Android-Stomp-Client
+Stomp library for Android
+
+## Example 
+
+``` kotlin
 
 lateinit var stompConnection: Disposable
 lateinit var topic: Disposable
@@ -47,3 +53,4 @@ compositeDisposable.add(sender)
 // disconnect
 compositeDisposable.dispose()
      
+```
