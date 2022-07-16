@@ -1,6 +1,33 @@
 # Android-Stomp-Client
 Stomp library for Android
 
+
+## Use
+
+
+<settings.gradle>
+
+dependencyResolutionManagement {
+    ...
+    repositories {
+        ...       
+        maven { url "https://jitpack.io" }
+    }
+}
+
+
+<build.gradle>
+
+...
+dependencies {
+    ...
+    implementation 'com.github.uasang01:Android-Stomp-Client:$latest_version'
+    ...
+}
+    
+
+
+
 ## Example 
 
 ``` kotlin
