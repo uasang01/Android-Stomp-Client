@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
+
+group = 'com.github.uasang01'
+version = '1.0'
 
 android {
     compileSdk 32
@@ -44,4 +48,16 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
-group = 'com.github.uasang01'
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.uasang01'
+                artifactId = 'lib'
+                version = '1.0'
+            }
+        }
+    }
+}
