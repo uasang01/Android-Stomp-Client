@@ -6,7 +6,7 @@ Stomp library for Android
 
 
 <settings.gradle>
-
+```kotlin
 dependencyResolutionManagement {
     ...
     repositories {
@@ -14,17 +14,17 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
     }
 }
-
+```
 
 <build.gradle>
-
+```kotlin
 ...
 dependencies {
     ...
     implementation 'com.github.uasang01:Android-Stomp-Client:$latest_version'
     ...
 }
-    
+```
 
 
 
