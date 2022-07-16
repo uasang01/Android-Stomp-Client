@@ -1,8 +1,6 @@
 # Android-Stomp-Client
 Stomp library for Android
 
-[![](https://jitpack.io/v/uasang01/Android-Stomp-Client.svg)](https://jitpack.io/#uasang01/Android-Stomp-Client)
-
 ## Example 
 
 ``` kotlin
