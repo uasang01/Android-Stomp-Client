@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.uasang01'
-version = '1.01'
+version = '1.02'
 
 android {
     compileSdk 32
@@ -14,7 +14,7 @@ android {
         minSdk 30
         targetSdk 32
         versionCode 1
-        versionName "1.01"
+        versionName "1.02"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
