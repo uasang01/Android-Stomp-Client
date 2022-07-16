@@ -142,7 +142,7 @@ class StompClient(private val okHttpClient: OkHttpClient,
         while (reader.hasNext(Message.PATTERN_HEADER)) {
             val matcher = Message.PATTERN_HEADER.matcher(reader.next())
             matcher.find()
-            headers.put(matcher.group(1), matcher.group(2))
+            matcher.group(1)?.let { matcher.group(2)?.let { it1 -> headers.put(it, it1) } }
         }
 
         reader.skip("\\s")
@@ -173,17 +173,17 @@ class StompClient(private val okHttpClient: OkHttpClient,
 
     // from WebSocketListener listener
 
-    override fun onOpen(socket: WebSocket, response: Response) {
+    override fun onOpen(webSocket: WebSocket, response: Response) {
         val headers = HashMap<String, String>()
         headers[Headers.VERSION] = SUPPORTED_VERSIONS
         customHeaders.forEach{
             headers[it.key] = it.value
         }
-        webSocket.send(compileMessage(Message(Commands.CONNECT, headers)))
+        this.webSocket.send(compileMessage(Message(Commands.CONNECT, headers)))
         logger.log(Level.INFO, "onOpen")
     }
 
-    override fun onClosed(socket: WebSocket, code: Int, reason: String) {
+    override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
         emitter.onNext(Event(Event.Type.CLOSED))
         logger.log(Level.INFO, "onClosed reason: $reason, code: $code")
 //        reconnect()
