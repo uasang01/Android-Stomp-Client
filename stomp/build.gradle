@@ -11,7 +11,7 @@ android {
         minSdk 30
         targetSdk 32
         versionCode 1
-        versionName "1.06"
+        versionName "1.07"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,7 +51,7 @@ afterEvaluate {
 
                 groupId = 'com.github.uasang01'
                 artifactId = 'Android-Stomp-Client'
-                version = '1.06'
+                version = '1.07'
             }
         }
     }
