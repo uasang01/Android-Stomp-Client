@@ -8,10 +8,10 @@ android {
     compileSdk 32
 
     defaultConfig {
-        minSdk 30
+        minSdk 29
         targetSdk 32
         versionCode 1
-        versionName "1.09"
+        versionName "1.10"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,7 +51,7 @@ afterEvaluate {
 
                 groupId = 'com.github.uasang01'
                 artifactId = 'Android-Stomp-Client'
-                version = '1.09'
+                version = '1.10'
             }
         }
     }
